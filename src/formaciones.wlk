@@ -8,10 +8,9 @@ class Formacion {
 	//method vagonesPopulares(){ vagones.filter({ v => v.cantidadPasajeros() >50}). size()}
 	// method esPopular() = cantidadPasajeros() >50
 	method formacionCarguera() { vagones.all ({ v => v.cantidadMaxCarga() >= 1000 })}
-	method dispersionDelPeso(){  return
-		(vagones.max({v => v.pesoMax()}) -
-		(vagones.min({v => v.pesoMax()}) 
-	}
-	method cantidadBanios() { vagones.sum({ v => v.tieneBanios() }}
-	)
+	method vagonMasPesado()  {return  vagones.max({v => v.pesoMax()})}
+	method vagonMasLiviano() {return vagones.min({v => v.pesoMax()})}
+	method dispersionDePeso(){ return self.vagonMasPesado().pesoMax() - self.vagonMasLiviano().pesoMax() }
+	method cantidadBanios() { vagones.count({ v => v.tieneBanios()})}
+	
 }
